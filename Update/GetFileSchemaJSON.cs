@@ -12,6 +12,12 @@ namespace Update
         public static void GetFileList(string FilePath, out List<FileInfo> fileInfos)
         {
             fileInfos = new List<FileInfo>();
+            // 检查路径是否存在，避免抛出 DirectoryNotFoundException
+            if (!Directory.Exists(FilePath))
+            {
+                return;
+            }
+            
             DirectoryInfo root = new DirectoryInfo(FilePath);
             foreach (var item in root.GetDirectories())
             {
